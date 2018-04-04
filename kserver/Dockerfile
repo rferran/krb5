@@ -15,6 +15,7 @@ COPY krb5.conf /opt/docker/
 RUN cp -f /opt/docker/krb5.conf /etc/
 
 COPY kdc.conf /opt/docker/
+RUN chmod -R 777 /var/kerberos/krb5kdc/
 RUN cp -f /opt/docker/kdc.conf /var/kerberos/krb5kdc/
 
 COPY startup.sh /opt/docker/
