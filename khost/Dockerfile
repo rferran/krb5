@@ -7,13 +7,28 @@ FROM fedora:24
 MAINTAINER @isx45128227 "@edt ASIX M11 Curs 2017-2018"
 RUN mkdir /opt/docker/
 
-RUN dnf -y update vi
-RUN dnf -y install vim procps iputils iproute tree nmap mlocate \
-		   openldap openldap-clients openldap-servers man-db
-COPY * /opt/docker/
-COPY ldap.conf /etc/openldap/
-RUN chmod +x /opt/docker/install.sh /opt/docker/startup.sh
-RUN /opt/docker/install.sh
+COPY install.sh /opt/docker/
+RUN chmod +x /opt/docker/install.sh 
+CMD ["/opt/docker/install.sh"]
+
+COPY krb5.conf /opt/docker/
+RUN cp /opt/docker/krb5.conf /etc/
+
+COPY chfn /opt/docker
+RUN cp /opt/docker/chfn /etc/pam.d/
+
+COPY system-auth /opt/docker
+RUN cp /opt/docker/system-auth /etc/pam.d/
+
+COPY login /opt/docker
+RUN cp /opt/docker/login /etc/pam.d/
+
+RUN echo "CHFN_RESTRICT = yes" >> /etc/login.defs
+
 WORKDIR /opt/docker
-EXPOSE 389 636
+
+COPY startup.sh /opt/docker/
+RUN chmod +x /opt/docker/startup.sh 
 CMD ["/opt/docker/startup.sh"]
+
+
