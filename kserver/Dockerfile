@@ -28,6 +28,6 @@ RUN chmod +x /opt/docker/startup.sh
 WORKDIR /opt/docker
 EXPOSE 749 88
 
-RUN ./opt/docker/createDB.sh
+RUN /opt/docker/createDB.sh
 
-RUN ./opt/docker/startup.sh
+RUN /opt/docker/startup.sh
