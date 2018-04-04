@@ -21,7 +21,6 @@ RUN cp -f /opt/docker/kadm5.acl /var/kerberos/krb5kdc/
 
 COPY createDB.sh /opt/docker/
 RUN chmod +x /opt/docker/createDB.sh 
-CMD ["/opt/docker/createDB.sh"]
 
 COPY startup.sh /opt/docker/
 RUN chmod +x /opt/docker/startup.sh 
@@ -29,4 +28,5 @@ RUN chmod +x /opt/docker/startup.sh
 WORKDIR /opt/docker
 EXPOSE 749 88
 
+CMD ["/opt/docker/createDB.sh"]
 CMD ["/opt/docker/startup.sh"]
