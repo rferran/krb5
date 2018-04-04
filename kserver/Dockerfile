@@ -14,16 +14,16 @@ CMD ["/opt/docker/install.sh"]
 COPY krb5.conf /opt/docker/
 RUN cp -f /opt/docker/krb5.conf /etc/
 
-COPY createDB.sh /opt/docker/
-RUN chmod +x /opt/docker/createDB.sh 
-CMD ["/opt/docker/createDB.sh"]
-
 COPY kdc.conf /opt/docker/
+RUN mkdir /var/kerberos/krb5kdc/
 RUN cp -f /opt/docker/kdc.conf /var/kerberos/krb5kdc/
 
 COPY kadm5.acl /opt/docker/
 RUN cp -f /opt/docker/kadm5.acl /var/kerberos/krb5kdc/
 
+COPY createDB.sh /opt/docker/
+RUN chmod +x /opt/docker/createDB.sh 
+CMD ["/opt/docker/createDB.sh"]
 
 COPY startup.sh /opt/docker/
 RUN chmod +x /opt/docker/startup.sh 
