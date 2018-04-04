@@ -7,15 +7,13 @@ FROM fedora:24
 MAINTAINER @isx45128227 "@edt ASIX M11 Curs 2017-2018"
 RUN mkdir /opt/docker/
 
-COPY install.sh /opt/docker/
-RUN chmod +x /opt/docker/install.sh 
-CMD ["/opt/docker/install.sh"]
+RUN dnf -y update vi
+RUN dnf -y install nmap vim iputils tree iproute mlocate procps krb5-server krb5-libs krb5-workstation man-db
 
 COPY krb5.conf /opt/docker/
 RUN cp -f /opt/docker/krb5.conf /etc/
 
 COPY kdc.conf /opt/docker/
-RUN mkdir /var/kerberos/krb5kdc/
 RUN cp -f /opt/docker/kdc.conf /var/kerberos/krb5kdc/
 
 COPY kadm5.acl /opt/docker/
