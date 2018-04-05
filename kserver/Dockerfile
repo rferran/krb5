@@ -29,5 +29,3 @@ WORKDIR /opt/docker
 EXPOSE 749 88
 
 RUN /opt/docker/createDB.sh
-
-RUN /opt/docker/startup.sh
