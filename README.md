@@ -8,7 +8,7 @@ Abans d'executar cap contenidor cal crear la xarxa per a que es vegin entre ells
 
 ### kserver
 
-`docker run --net kerberos --name kserver -h kserver -it isx45128227/kerberos:kserver /bin/bash`
+`docker run --net kerberos --name kserver -h kserver -it isx45128227/krb5:kserver /bin/bash`
 
 Dins del docker executem el fitxer startup per iniciar el servidor.
 
@@ -17,14 +17,14 @@ Dins del docker executem el fitxer startup per iniciar el servidor.
 
 ### kclient
 
-`docker run --net kerberos --name kclient -h kclient -it isx45128227/kerberos:kclient /bin/bash`
+`docker run --net kerberos --name kclient -h kclient -it isx45128227/krb5:kclient /bin/bash`
 
 
 ### sshserver
 
-`docker run --net kerberos --name sshserver -h sshserver -it isx45128227/kerberos:sshserver /bin/bash`
+`docker run --net kerberos --name sshserver -h sshserver -it isx45128227/krb5:sshserver /bin/bash`
 
 
 ### khost
 
-`docker run --net kerberos --name khost -h khost -it isx45128227/kerberos:khost /bin/bash`
+`docker run --net kerberos --name khost -h khost -it isx45128227/krb5:khost /bin/bash`
