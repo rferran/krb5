@@ -4,8 +4,8 @@ useradd pere
 useradd pau 
 useradd marta
 
-kadmin.local addprinc -randkey host/sshserver 
-kadmin.local ktadd -k /etc/krb5.keytab host/sshserver
+kadmin -w kpau -s pau addprinc -randkey host/sshserver
+kadmin -w kpau -s pau ktadd -k /etc/krb5.keytab host/sshserver
 
 ssh-keygen -A 
 /usr/sbin/sshd $OPTIONS
